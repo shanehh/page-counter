@@ -5,7 +5,7 @@ const __main = () => {
   browser.onInstalled = () => {
     log('恭喜安装 app 噢')
     // 设置闹钟
-    browser.testAlram()
+    browser.setNewDayAlarm()
   }
 }
 
