@@ -13,7 +13,8 @@ const getStorage = () => {
       if (pageCounter) {
         resolve(JSON.parse(pageCounter))
       } else {
-        resolve({ count: 1 })
+        // 没有记录诶!
+        resolve({ count: 0 })
       }
     })
   })
@@ -56,5 +57,11 @@ export default {
   },
   get storage () {
     return getStorage()
+  },
+  async addCounting () {
+    const browser = this
+    let { count } = await browser.storage
+    browser.badgeText = ++count
+    browser.storage = { count }
   }
 }
