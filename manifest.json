@@ -17,7 +17,8 @@
   },
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "alarms"
   ],
   "background": {
     "page": "background.html"
