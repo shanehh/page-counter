@@ -21,5 +21,8 @@ const __main = async () => {
     log('tabs', tabId, newUrl, tab)
     browser.addCounting()
   }
+  browser.events.onStoreChange = () => {
+    //
+  }
 }
 __main()
