@@ -1,9 +1,12 @@
 /* global chrome */
+// eslint-disable-next-line
 import { log, beforeDawnTimestamp } from './utils.js'
 
 export default {
   setNewDayAlarm () {
-    chrome.alarms.create('newDayComes', { when: beforeDawnTimestamp('tomorrow') })
+    // chrome.alarms.create('newDayComes', { when: beforeDawnTimestamp('tomorrow') })
+    // FOR TEST
+    chrome.alarms.create('newDayComes', { when: Date.now() + 60 * 1000 })
   },
   clearStorage (k) {
     chrome.storage.sync.remove(k)
