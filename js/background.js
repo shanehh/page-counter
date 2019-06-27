@@ -23,4 +23,6 @@ const __main = async () => {
   }
 }
 
-__main()
+// __main()
+browser.badgeText = 1
+log('test', browser)
