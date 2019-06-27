@@ -25,7 +25,9 @@ const getHistory = () => {
 
 const getStorage = () => {
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get('pageCounter', ({ pageCounter }) => {
+    chrome.storage.sync.get('pageCounter', (obj) => {
+      log('obj', obj)
+      const pageCounter = obj.pageCounter
       if (pageCounter) {
         resolve(JSON.parse(pageCounter))
       } else {
