@@ -21,6 +21,10 @@ const setStorage = (k, v) => {
   chrome.storage.sync.set({ [k]: v })
 }
 
+const clearStorage = (item) => {
+  chrome.storage.sync.remove(item)
+}
+
 export default {
   set count (_int) {
     setStorage('count', _int)
@@ -33,5 +37,8 @@ export default {
   },
   get history () {
     return getStorage('history', [])
+  },
+  clear (item = 'count') {
+    clearStorage(item)
   }
 }

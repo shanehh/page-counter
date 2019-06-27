@@ -6,10 +6,8 @@ export default {
   setNewDayAlarm () {
     // chrome.alarms.create('newDayComes', { when: beforeDawnTimestamp('tomorrow') })
     // FOR TEST
-    chrome.alarms.create('newDayComes', { when: Date.now() + 60 * 1000 })
-  },
-  clearStorage (k) {
-    chrome.storage.sync.remove(k)
+    log('set clock')
+    chrome.alarms.create('newDayComes', { when: Date.now() + 61 * 1000 })
   },
   async addCounting () {
     const browser = this
@@ -21,11 +19,12 @@ export default {
   },
   async refresh () {
     const browser = this
-    const { count } = await browser.store.count
+    const count = await browser.store.count
     // 将昨日数据存入 history
     browser.pushToHistroy(count)
-    // clear 昨日数据
-    browser.clearStorage()
+    // clear counter
+    // 设置 0 是因为, 并不是刷新窗口
+    browser.store.count = 0
     browser.badge.text = '...'
   },
   async pushToHistroy (count) {
