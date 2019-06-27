@@ -9,11 +9,11 @@ export default {
     chrome.storage.sync.remove(k)
   },
   async addCounting () {
-    log('有进来')
     const browser = this
     let count = await browser.store.count
-    log('count**', count)
+    // update the badge
     browser.badge.text = ++count
+    // save the change
     browser.store.count = count
   },
   async refresh () {

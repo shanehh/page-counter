@@ -4,7 +4,6 @@ import { log, dir, beforeDawnTimestamp } from './utils/utils.js'
 /* eslint-enable */
 
 const browserStart = () => {
-  log('浏览器启动咯')
   browser.badge.text = '...'
   browser.addCounting()
 }
@@ -18,7 +17,7 @@ const __main = async () => {
     browser.setNewDayAlarm()
   })
   browser.events.onNewViewPage = async (tabId, newUrl, tab) => {
-    log('tabs', tabId, newUrl, tab)
+    // log('tabs', tabId, newUrl, tab)
     browser.addCounting()
   }
   browser.events.onStoreChange = () => {
