@@ -9,7 +9,9 @@ import store from './store.js'
 
 export default {
   badge,
-  events,
   store,
-  ...actions
+  ...actions,
+  on (eventName, callback) {
+    events[eventName](callback)
+  }
 }

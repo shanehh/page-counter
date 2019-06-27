@@ -11,17 +11,20 @@ const browserStart = () => {
 const __main = async () => {
   browserStart()
   // daily refresh~
-  browser.events.onceAlarm('newDayComes', () => {
-    log('newDayComes')
-    browser.refresh()
-    browser.setNewDayAlarm()
+  browser.on('alarm', {
+    alarmName: 'newDayComes',
+    callback () {
+      log('newDayComes')
+      browser.refresh()
+      browser.setNewDayAlarm()
+    }
   })
-  browser.events.onNewViewPage = async (tabId, newUrl, tab) => {
+  browser.on('newViewPage', async (tabId, newUrl, tab) => {
     // log('tabs', tabId, newUrl, tab)
     browser.addCounting()
-  }
-  browser.events.onStoreChange = () => {
-    //
-  }
+  })
+  browser.on('storeChange', () => {
+    log('回调函数内容!')
+  })
 }
 __main()
