@@ -14,6 +14,6 @@ export default {
   // },
   badge,
   events,
-  actions,
-  store
+  store,
+  ...actions
 }
