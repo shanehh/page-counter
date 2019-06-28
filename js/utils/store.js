@@ -30,7 +30,7 @@ export default {
     setStorage('count', _int)
   },
   get count () {
-    return getStorage('count', 1)
+    return getStorage('count', 0)
   },
   set history (_arr) {
     setStorage('history', _arr)

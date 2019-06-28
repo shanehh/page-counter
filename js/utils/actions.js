@@ -2,6 +2,20 @@
 // eslint-disable-next-line
 import { log, beforeDawnTimestamp } from './utils.js'
 
+const getAlarm = (alarmName) => {
+  return new Promise((resolve, reject) => {
+    chrome.alarms.getAll((alarms) => {
+      alarms.forEach(alarm => {
+        if (alarm.name === alarmName) {
+          resolve(alarm)
+        } else {
+          resolve(false)
+        }
+      })
+    })
+  })
+}
+
 export default {
   setNewDayAlarm () {
     // chrome.alarms.create('newDayComes', { when: beforeDawnTimestamp('tomorrow') })
@@ -9,13 +23,14 @@ export default {
     log('set clock')
     chrome.alarms.create('newDayComes', { when: Date.now() + 61 * 1000 })
   },
+  async hadSetAlarm (alarmName) {
+    return getAlarm(alarmName)
+  },
   async addCounting () {
     const browser = this
     let count = await browser.store.count
-    // update the badge
-    browser.badge.text = ++count
     // save the change
-    browser.store.count = count
+    browser.store.count = ++count
   },
   async refresh () {
     const browser = this
@@ -25,7 +40,6 @@ export default {
     // clear counter
     // 设置 0 是因为, 并不是刷新窗口
     browser.store.count = 0
-    browser.badge.text = '...'
   },
   async pushToHistroy (count) {
     const browser = this
