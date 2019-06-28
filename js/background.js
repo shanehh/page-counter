@@ -1,13 +1,13 @@
 /* eslint-disable */
 import browser from './utils/browser.js'
-import { log, dir, beforeDawnTimestamp } from './utils/utils.js'
+import { log, dir, calendar } from './utils/utils.js'
 /* eslint-enable */
 
 const browserStart = async () => {
   log('浏览器启动!')
   // 比较日期, 是否为今日记录
   const recordDate = await browser.store.recordDate
-  const today = beforeDawnTimestamp('today')
+  const today = calendar('today')
   if (recordDate !== today) {
     log('新的一日')
     /**
