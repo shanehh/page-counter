@@ -25,6 +25,17 @@ const clearStorage = (item) => {
   chrome.storage.sync.remove(item)
 }
 
+const getRecordDate = async () => {
+  const d = await getStorage('recordDate', null)
+  if (d) {
+    return d
+  } else {
+    const today = calendar('today')
+    setStorage('recordDate', today)
+    return today
+  }
+}
+
 export default {
   set count (_int) {
     setStorage('count', _int)
@@ -36,7 +47,8 @@ export default {
     setStorage('recordDate', _date)
   },
   get recordDate () {
-    return getStorage('recordDate', calendar('today'))
+    // 如果没有记录, 日期设为今天, 并返回
+    return getRecordDate()
   },
   set history (_arr) {
     setStorage('history', _arr)
