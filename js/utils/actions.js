@@ -32,23 +32,15 @@ export default {
     // save the change
     browser.store.count = ++count
   },
-  async refresh () {
+  async pushToHistroy (date, data) {
     const browser = this
-    const count = await browser.store.count
-    // 将昨日数据存入 history
-    browser.pushToHistroy(count)
-    // clear counter
-    // 设置 0 是因为, 并不是刷新窗口
-    browser.store.count = 0
-  },
-  async pushToHistroy (count) {
-    const browser = this
-    const data = {
-      count,
-      date: beforeDawnTimestamp('yesterday')
+    const record = {
+      date,
+      data
     }
     const h = await browser.store.history
-    h.push(data)
+    h.push(record)
     browser.store.history = h
+    log('我确认存入未被篡改历史!!!!!')
   }
 }

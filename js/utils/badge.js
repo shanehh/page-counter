@@ -17,7 +17,7 @@ export default {
   get text () {
     return getBadgeText()
   },
-  set Color (color) {
+  set color (color) {
     chrome.browserAction.setBadgeBackgroundColor({ color })
   }
 }

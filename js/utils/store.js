@@ -1,6 +1,6 @@
 /* global chrome */
 // eslint-disable-next-line
-import { log } from './utils.js'
+import { beforeDawnTimestamp, log } from './utils.js'
 
 const getStorage = (k, defaltValue) => {
   return new Promise((resolve, reject) => {
@@ -31,6 +31,12 @@ export default {
   },
   get count () {
     return getStorage('count', 0)
+  },
+  set recordDate (_date) {
+    setStorage('recordDate', _date)
+  },
+  get recordDate () {
+    return getStorage('recordDate', beforeDawnTimestamp())
   },
   set history (_arr) {
     setStorage('history', _arr)
