@@ -1,6 +1,6 @@
 /* global chrome */
 // eslint-disable-next-line
-import { log, beforeDawnTimestamp } from './utils.js'
+import { log, calendar } from './utils.js'
 
 const getAlarm = (alarmName) => {
   return new Promise((resolve, reject) => {
@@ -17,12 +17,6 @@ const getAlarm = (alarmName) => {
 }
 
 export default {
-  setNewDayAlarm () {
-    // chrome.alarms.create('newDayComes', { when: beforeDawnTimestamp('tomorrow') })
-    // FOR TEST
-    log('set clock')
-    chrome.alarms.create('newDayComes', { when: Date.now() + 61 * 1000 })
-  },
   async hadSetAlarm (alarmName) {
     return getAlarm(alarmName)
   },
