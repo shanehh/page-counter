@@ -34,7 +34,19 @@ module.exports = {
       }
     ]
   },
-  // optimization: { runtimeChunk: true },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          name: 'common',
+          chunks: 'all',
+          minSize: 30,
+          minChunks: 2,
+          priority: 1
+        }
+      }
+    }
+  },
   plugins: [
     new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
     new CleanWebpackPlugin()
