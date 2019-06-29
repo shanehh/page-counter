@@ -1,0 +1,34 @@
+{
+  "name": "page-counter",
+  "version": "1.0.0",
+  "description": "Page-counter is a simple &amp; useful Chrome extension 😊",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huulien/page-counter.git"
+  },
+  "keywords": [
+    "chrome extension",
+    "counter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huulien/page-counter/issues"
+  },
+  "homepage": "https://github.com/huulien/page-counter#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.0.0",
+    "file-loader": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.5"
+  },
+  "dependencies": {}
+}
