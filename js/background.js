@@ -1,48 +1,26 @@
-/* eslint-disable */
-import browser from './utils/browser.js'
-import { log, dir, calendar } from './utils/utils.js'
-/* eslint-enable */
+const log = console.log.bind(console)
 
-const browserStart = async () => {
-  log('浏览器启动!')
-  // 比较日期, 是否为今日记录
-  const recordDate = await browser.store.recordDate
-  const today = calendar('today')
-  if (recordDate !== today) {
-    log('新的一日')
-    /**
-     * push to history
-     * clear count
-     * reset record date
-     */
-    const c = await browser.store.count
-    if (c) {
-      browser.pushToHistroy(recordDate, {
-        count: c,
-        msg: `I'm happy!`
-      })
-      browser.store.count = 0
+const newViewPage = callback =>
+  chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (!changeInfo.url) {
+      return
     }
-    browser.store.recordDate = today
-  }
-  browser.addCounting()
-}
-
-const __main = async () => {
-  browserStart()
-  browser.on('newViewPage', async (tabId, newUrl, tab) => {
-    // log('tabs', tabId, newUrl, tab)
-    browser.addCounting()
+    callback(tabId, changeInfo.url, tab)
   })
-  browser.on('storeChange', {
-    item: 'count',
-    callback (value) {
-      browser.badge.text = value
-      if (value >= 5) {
-        browser.badge.color = '#ff0000'
-      }
-    }
-  })
-}
 
-__main()
+const setText = text =>
+  chrome.browserAction.setBadgeText({
+    text: String(text)
+  })
+
+const setColor = color =>
+  chrome.browserAction.setBadgeBackgroundColor({ color })
+
+;(async function main () {
+  let n = 1
+  newViewPage((tabId, newUrl, tab) => {
+    log('tabs', tabId, newUrl, tab)
+    n += 1
+    setText(n)
+  })
+})()
