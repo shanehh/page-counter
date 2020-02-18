@@ -20,7 +20,10 @@
     "alarms"
   ],
   "background": {
-    "page": "background.html"
+    "scripts": [
+      "/js/lib/moment.min.js",
+      "/js/background.js"
+    ]
   },
   "options_page": "options.html"
 }
